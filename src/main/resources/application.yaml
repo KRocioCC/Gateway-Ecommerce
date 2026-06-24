@@ -1,3 +1,17 @@
 spring:
   application:
     name: api-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    # Descarga desde Eureka la lista de microservicios registrados
+    # para que el Gateway pueda localizarlos y redirigir solicitudes.
+    fetch-registry: true
+    # Registra este Gateway en Eureka para que los demas servicios
+    # puedan reconocerlo y encontrarlo dentro de la arquitectura.
+    register-with-eureka: true
+
+server:
+  port: 9000
