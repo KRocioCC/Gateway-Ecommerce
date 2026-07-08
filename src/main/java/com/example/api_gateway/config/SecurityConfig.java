@@ -27,10 +27,14 @@ public class SecurityConfig {
                 .authorizeExchange( authorizeExchangeSpec -> authorizeExchangeSpec
                         .pathMatchers("/eureka/**").permitAll()
 
-                        .pathMatchers(HttpMethod.GET, "/api/product/**").permitAll()
-                        .pathMatchers(HttpMethod.GET, "/api/inventory/**").permitAll()
-                        .pathMatchers("/api/product/**").hasRole(Role.ADMIN.name())
-                        .pathMatchers("/api/inventory/**").hasRole(Role.ADMIN.name())
+                        .pathMatchers(HttpMethod.GET, "/api/v1/product/**").permitAll()
+                        .pathMatchers(HttpMethod.GET, "/api/v1/inventory/**").permitAll()
+                        .pathMatchers("/api/v1/product/**").hasRole(Role.ADMIN.name())
+                        .pathMatchers("/api/v1/inventory/**").hasRole(Role.ADMIN.name())
+
+                        .pathMatchers(HttpMethod.GET, "/api/images/**").permitAll()
+                        .pathMatchers(HttpMethod.POST, "/api/images").hasRole(Role.ADMIN.name())
+                        .pathMatchers(HttpMethod.DELETE, "/api/images/**").hasRole(Role.ADMIN.name())
 
                         .pathMatchers(HttpMethod.POST, "/api/v1/order").hasRole(Role.USER.name())
                         .pathMatchers("/api/v1/order/**").hasRole(Role.ADMIN.name())
